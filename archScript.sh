@@ -2,7 +2,7 @@
 # Stop execution if any command fails
 set -e
 
- Set variables for the drives and partitions
+# Set variables for the drives and partitions
  DISK="/dev/sdb"                # The SSD where Arch will be installed
  EFI_PARTITION="${DISK}1"        # EFI partition
  ROOT_PARTITION="${DISK}2"       # Root partition
