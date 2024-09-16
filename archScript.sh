@@ -1,4 +1,6 @@
-et -e
+#!/bin/bash
+# Stop execution if any command fails
+set -e
 
  Set variables for the drives and partitions
  DISK="/dev/sdb"                # The SSD where Arch will be installed
