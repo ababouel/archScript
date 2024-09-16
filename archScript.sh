@@ -55,12 +55,9 @@ set -e
 
 # Set up hostname and hosts file
  echo "Set up hostname\n"
- echo "archlinux" > /etc/hostname
- cat <<HOSTS > /etc/hosts
- 127.0.0.1   localhost
- ::1         localhost
- 127.0.1.1   archlinux.localdomain archlinux
- HOSTS
+ echo "127.0.0.1   localhost" > /etc/hosts
+ echo "::1         localhost" >> /etc/hosts
+ echo "127.0.1.1   archlinux.localdomain archlinux" >> /etc/hostscho "archlinux" > /etc/hostname
 
 # Set root password
  echo "Set root password:"
