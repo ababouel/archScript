@@ -1,5 +1,6 @@
 
 How to Use the Script
+
 Prepare the USB:
 
 Boot into the Arch Linux live environment from your bootable USB.
