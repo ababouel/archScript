@@ -60,8 +60,8 @@ set -e
  echo "127.0.1.1   archlinux.localdomain archlinux" >> /etc/hostscho "archlinux" > /etc/hostname
 
 # Set root password
- echo "Set root password:"
- passwd
+# echo "Set root password:"
+# passwd
 
 # Install necessary packages
  echo "Install necessary packages\n"
@@ -77,15 +77,27 @@ set -e
  systemctl enable NetworkManager
 
 # Create a user account with sudo privileges
- echo "Create a new user:"
- read -p "Username: " username
- useradd -m -G wheel $username
- passwd $username
+# echo "Create a new user:"
+# read -p "Username: " username
+# useradd -m -G wheel $username
+# passwd $username
 
 # Give the user sudo privileges
- sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+# sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
- EOF
+EOF
+# Set root password interactively (outside the chroot block)
+echo "Set root password:"
+arch-chroot /mnt passwd
+
+# Create a user account with sudo privileges interactively
+echo "Create a new user:"
+read -p "Username: " username
+arch-chroot /mnt useradd -m -G wheel $username
+arch-chroot /mnt passwd $username
+
+# Give the user sudo privileges
+arch-chroot /mnt sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
 # Unmount partitions and reboot
  umount -R /mnt
